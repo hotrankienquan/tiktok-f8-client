@@ -1,3 +1,8 @@
+day code len github
+git config --global user.email 'hotrankienquan144@gmail.com'
+git config --global user.name 'kienquan'
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
