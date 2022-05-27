@@ -10,9 +10,13 @@
         padding: 11px 16px;
         // fix button height ko deu nhau
         line-height: 1.8rem;
+        font-weight: 600;
         ///
         &:hover {
             background-color:rgba(22, 24, 35, 0.03) ;
+        }
+        &.separate {
+                border-top: 1px solid rgba(22, 24, 35, 0.12);
         }
     }
     .menu-popper {
