@@ -27,6 +27,8 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
+import { UploadIcon } from '~/components/Icons';
+import Image from '~/components/Image';
 const cx = classNames.bind(styles);
 // console.log(images);
 const MENU_ITEMS = [
@@ -144,7 +146,7 @@ function Header() {
                                 delay={[0,200]}
                             >
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faCloudUpload}/>
+                                    <UploadIcon />
                                 </button>
                            </Tippy>
                             {/* <button className={cx('action-btn')}>
@@ -164,7 +166,10 @@ function Header() {
                 ) }
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img src='https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/ea0854578085ab26effc2c7b8cefa270~c5_100x100.jpeg?x-expires=1653804000&x-signature=CGQadWk%2FMpIcneS2FdFxb2GY6oM%3D' className={ cx('user-avatar')} alt="dao le phuong hoa" />
+                            // https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/ea0854578085ab26effc2c7b8cefa270~c5_100x100.jpeg?x-expires=1653804000&x-signature=CGQadWk%2FMpIcneS2FdFxb2GY6oM%3D
+                            <Image src='' className={cx('user-avatar')} alt="dao le phuong hoa"
+                            fallback="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/ea0854578085ab26effc2c7b8cefa270~c5_100x100.jpeg?x-expires=1653804000&x-signature=CGQadWk%2FMpIcneS2FdFxb2GY6oM%3D"
+                            />
                         ): (
                             
 
