@@ -16,6 +16,7 @@
     align-items: center;
     // background-color: #ccc;
     justify-content: space-between;
+    padding: 0 var(--default-layout-horizontal-spacer);
 }
 // .logo {
 // }
@@ -109,4 +110,5 @@
     margin-left: 28px;
     padding: 4px 8px;
     background-color: transparent;
+    cursor: pointer;
 }
