@@ -27,7 +27,7 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
-import { UploadIcon } from '~/components/Icons';
+import { InboxIcon, MessageIcon, SearchIcon, UploadIcon } from '~/components/Icons';
 import Image from '~/components/Image';
 const cx = classNames.bind(styles);
 // console.log(images);
@@ -134,7 +134,7 @@ function Header() {
 
                         <button className={cx('search-btn')}>
                             {/* search */}
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                            <SearchIcon />
                         </button>
                     </div>
                 </HeadlessTippy>
@@ -143,7 +143,7 @@ function Header() {
                         <>
                             <Tippy content="Upload video"
                                 placement='bottom'
-                                delay={[0,200]}
+                                delay={[0,50]}
                             >
                                 <button className={cx('action-btn')}>
                                     <UploadIcon />
@@ -152,6 +152,17 @@ function Header() {
                             {/* <button className={cx('action-btn')}>
                                 <FontAwesomeIcon icon={faMessage}/>
                             </button> */}
+                             <Tippy delay={[0, 50]} content="Message" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <MessageIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy delay={[0, 50]} content="Inbox" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <InboxIcon />
+                                    <span className={cx('badge')}>12</span>
+                                </button>
+                            </Tippy>
                         </>
                     ): (
                         <>
@@ -167,8 +178,8 @@ function Header() {
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
                             // https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/ea0854578085ab26effc2c7b8cefa270~c5_100x100.jpeg?x-expires=1653804000&x-signature=CGQadWk%2FMpIcneS2FdFxb2GY6oM%3D
-                            <Image src='' className={cx('user-avatar')} alt="dao le phuong hoa"
-                            fallback="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/ea0854578085ab26effc2c7b8cefa270~c5_100x100.jpeg?x-expires=1653804000&x-signature=CGQadWk%2FMpIcneS2FdFxb2GY6oM%3D"
+                            <Image src='https://files.fullstack.edu.vn/f8-prod/user_avatars/1/623d4b2d95cec.png' className={cx('user-avatar')} alt="dao le phuong hoa"
+                           
                             />
                         ): (
                             
