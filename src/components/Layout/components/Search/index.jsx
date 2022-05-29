@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { useEffect, useState } from 'react';
 
 import {
@@ -14,6 +15,7 @@ import classNames from 'classnames/bind';
 import styles from './Search.module.scss'
 import { useRef } from 'react';
 import { useDebounce } from '~/hooks';
+import * as searchServices from '~/apiServices/searchServices';
 const cx = classNames.bind(styles)
 
 function Search() {
@@ -28,7 +30,7 @@ function Search() {
      // lần 3: ho
      // khi đang gõ thì bị delay nên nó chưa kịp set value mới, vẫn
     // trả về chuỗi rỗng ở lần init đầu tiên
-    
+
     const debounced = useDebounce(searchValue, 800);
 
     const inputRef = useRef();
@@ -43,21 +45,29 @@ function Search() {
     useEffect(() => {
         // go dau cach gui request thi return; luon
         // encodeURIComponent : ma hoa ki tu gay nham lan
+        // nho dung sudo khi cai dat package
 
         if (!debounced.trim()) {
             setSearchResult([])
             return;
         }
         setLoading(true)
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${ encodeURIComponent( debounced)}&type=less`)
-            .then(res => res.json())
-            .then(res => {
-                setSearchResult(res.data)
+        // gọi api-----------------------
+        searchServices.search(debounced)
+            .then((res) => {
+                setSearchResult(res)
                 setLoading(false)
-            })
-            .catch(() => {
-            setLoading(false)
-        })
+        } )
+        // --------------------------end gọi api----------------
+        // fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${ encodeURIComponent( debounced)}&type=less`)
+        //     .then(res => res.json())
+        //     .then(res => {
+        //         setSearchResult(res.data)
+        //         setLoading(false)
+        //     })
+        //     .catch(() => {
+        //     setLoading(false)
+        // })
     }, [debounced]);
     return (
         <>
