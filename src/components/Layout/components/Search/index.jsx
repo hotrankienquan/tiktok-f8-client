@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss'
 import { useRef } from 'react';
+import { useDebounce } from '~/hooks';
 const cx = classNames.bind(styles)
 
 function Search() {
@@ -21,6 +22,14 @@ function Search() {
 
     const [showResult, setShowResult] = useState(true)
     const [loading, setLoading] = useState(false)
+
+        // lần 1: debounced là chuỗi rỗng ""
+        // lần 2: h
+     // lần 3: ho
+     // khi đang gõ thì bị delay nên nó chưa kịp set value mới, vẫn
+    // trả về chuỗi rỗng ở lần init đầu tiên
+    
+    const debounced = useDebounce(searchValue, 800);
 
     const inputRef = useRef();
     const handleClear = () => {
@@ -35,22 +44,21 @@ function Search() {
         // go dau cach gui request thi return; luon
         // encodeURIComponent : ma hoa ki tu gay nham lan
 
-        if (!searchValue.trim()) {
+        if (!debounced.trim()) {
             setSearchResult([])
             return;
         }
         setLoading(true)
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${ encodeURIComponent( searchValue)}&type=less`)
+        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${ encodeURIComponent( debounced)}&type=less`)
             .then(res => res.json())
             .then(res => {
-                console.log(res.data)
                 setSearchResult(res.data)
                 setLoading(false)
             })
             .catch(() => {
             setLoading(false)
         })
-    }, [searchValue]);
+    }, [debounced]);
     return (
         <>
          <HeadlessTippy
